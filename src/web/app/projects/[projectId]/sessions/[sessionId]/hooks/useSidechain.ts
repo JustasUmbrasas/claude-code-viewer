@@ -24,6 +24,8 @@ export const useSidechain = (conversations: Conversation[]) => {
             conv.type !== "permission-mode" &&
             conv.type !== "mode" &&
             conv.type !== "bridge-session" &&
+            conv.type !== "atis-latch" &&
+            conv.type !== "cost-state" &&
             conv.type !== "attachment",
         )
         .filter((conv) => conv.isSidechain === true),
@@ -121,6 +123,8 @@ export const useSidechain = (conversations: Conversation[]) => {
         conversation.type === "permission-mode" ||
         conversation.type === "mode" ||
         conversation.type === "bridge-session" ||
+        conversation.type === "atis-latch" ||
+        conversation.type === "cost-state" ||
         conversation.type === "attachment"
       ) {
         return false;

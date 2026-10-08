@@ -84,6 +84,14 @@ export const getConversationKey = (conversation: Conversation) => {
     return `bridge-session_${conversation.sessionId}_${conversation.bridgeSessionId}`;
   }
 
+  if (conversation.type === "atis-latch") {
+    return `atis-latch_${conversation.sessionId}`;
+  }
+
+  if (conversation.type === "cost-state") {
+    return `cost-state_${conversation.sessionId}_${conversation.totalCostUSD}`;
+  }
+
   if (conversation.type === "attachment") {
     return `attachment_${conversation.uuid}`;
   }

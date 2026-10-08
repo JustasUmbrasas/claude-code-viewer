@@ -210,6 +210,29 @@ describe("ConversationSchema", () => {
     expect(result.success).toBe(true);
   });
 
+  test("accepts atis-latch entries (#231)", () => {
+    const data = ConversationSchema.parse({
+      type: "atis-latch",
+      atis: "",
+      sessionId: "184ae602-1624-4fd7-823e-ee3992488ba3",
+    });
+    expect(data.type).toBe("atis-latch");
+  });
+
+  test("accepts cost-state entries", () => {
+    const data = ConversationSchema.parse({
+      type: "cost-state",
+      sessionId: "2b5de99c-8a2a-444a-9dfc-8974892f1a54",
+      totalCostUSD: 0.0475,
+      totalAPIDuration: 11757,
+      totalDuration: 15334,
+      startTime: 1791439393386,
+      modelUsage: { "claude-sonnet-5-5": { inputTokens: 6, outputTokens: 828 } },
+      hasUnknownModelCost: false,
+    });
+    expect(data.type).toBe("cost-state");
+  });
+
   test("accepts last-prompt entries with leafUuid (#210)", () => {
     const data = ConversationSchema.parse({
       type: "last-prompt",
